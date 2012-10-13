@@ -1,5 +1,6 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockActivity;
