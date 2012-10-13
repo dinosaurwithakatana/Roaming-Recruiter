@@ -14,6 +14,10 @@ public class LoginActivity extends SherlockActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         
+        //TODO: CHANGE BEFORE COMMITTING
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        
         Button createAccountButton = (Button)findViewById(R.id.btnCreateAcct);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
 			
