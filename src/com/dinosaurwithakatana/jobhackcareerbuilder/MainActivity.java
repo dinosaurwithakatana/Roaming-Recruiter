@@ -18,6 +18,17 @@ public class MainActivity extends SherlockMapActivity {
 	private LocalConfiguration mConfiguration;
 	private boolean mBound = false;
 	private static final String TAG = MainActivity.class.getSimpleName();
+	
+	/**
+	 * Sample user, for test purposes ONLY.
+	 */
+	public void populateSampleUser() {
+		CurrentUser.sUsername="anjan";
+		CurrentUser.sFirstName="Anjan";
+		CurrentUser.sLastName="Karanam";
+		CurrentUser.sEducation="DR32";
+		CurrentUser.sSOCCode="15-0000";
+	}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,7 @@ public class MainActivity extends SherlockMapActivity {
         
         setContentView(R.layout.activity_main);
         mConfiguration = new LocalConfiguration();
+        populateSampleUser();
     }
     
     @Override
@@ -50,7 +62,7 @@ public class MainActivity extends SherlockMapActivity {
 				Log.d(TAG, "Number of Jobs: " + jobs.size());
 				StringBuilder sb = new StringBuilder();
 				for (Job job : jobs) {
-					sb.append(job.getCompany()).append("--\n");
+					sb.append(job.getCompany()).append("\n");
 				}
 				
 				tv.setText(sb.toString());
