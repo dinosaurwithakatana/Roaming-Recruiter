@@ -7,6 +7,9 @@ import com.dinosaurwithakatana.jobhackcareerbuilder.LocationService.LocalBinder;
 import com.google.android.maps.MapView;
 
 import android.os.*;
+import android.provider.Settings;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.*;
 import android.support.v4.app.*;
 import android.util.Log;
@@ -18,6 +21,7 @@ public class MainActivity extends SherlockMapActivity {
 	private LocationService mService;
 	private LocalConfiguration mConfiguration;
 	private boolean mBound = false;
+	protected int mId;
 	private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -44,8 +48,32 @@ public class MainActivity extends SherlockMapActivity {
 			@Override
 			public void onClick(View arg0) {
 				if(!mService.isIs_gpsEnabled()){
-					DialogFragment newFragment = LocationDialog.newInstance(this);
-				    newFragment.show(MainActivity.this.getSupportFragmentManager(), "missiles");
+					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MainActivity.this)
+					        .setSmallIcon(R.drawable.ic_launcher)
+					        .setContentTitle("My notification")
+					        .setContentText("Hello World!");
+					
+					Intent resultIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS );
+					
+					// The stack builder object will contain an artificial back stack for the
+					// started Activity.
+					// This ensures that navigating backward from the Activity leads out of
+					// your application to the Home screen.
+					TaskStackBuilder stackBuilder = TaskStackBuilder.create(MainActivity.this);
+					// Adds the back stack for the Intent (but not the Intent itself)
+//					stackBuilder.addParentStack(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					// Adds the Intent that starts the Activity to the top of the stack
+					stackBuilder.addNextIntent(resultIntent);
+					PendingIntent resultPendingIntent =
+					        stackBuilder.getPendingIntent(
+					            0,
+					            PendingIntent.FLAG_UPDATE_CURRENT
+					        );
+					mBuilder.setContentIntent(resultPendingIntent);
+					NotificationManager mNotificationManager =
+					    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+					// mId allows you to update the notification later on.
+					mNotificationManager.notify(mId, mBuilder.build());
 				}
 				// Update Map
 				Log.d(TAG, "Button click");

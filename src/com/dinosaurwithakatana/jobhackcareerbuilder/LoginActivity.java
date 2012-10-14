@@ -29,8 +29,8 @@ public class LoginActivity extends SherlockActivity{
 		Button login = (Button) findViewById(R.id.btnLogin);
 		
 			// TODO Just for now, this way we can skip logging for a bit
-		Intent i = new Intent(LoginActivity.this,MainActivity.class);
-		startActivity(i);
+//		Intent i = new Intent(LoginActivity.this,MainActivity.class);
+//		startActivity(i);
 		
 		login.setOnClickListener(new View.OnClickListener() {
 

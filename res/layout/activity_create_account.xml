@@ -27,7 +27,6 @@
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword" >
-
         </EditText>
 
         <EditText
@@ -38,7 +37,6 @@
             android:ems="10"
             android:hint="@string/confirm_password"
             android:inputType="textPassword" >
-
         </EditText>
 
         <EditText
@@ -48,9 +46,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/first_name" >
-
         </EditText>
-        
+
         <EditText
             android:id="@+id/txtMiddleName"
             android:layout_width="match_parent"
@@ -58,9 +55,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/middle_name" >
-
         </EditText>
-        
+
         <EditText
             android:id="@+id/txtLastName"
             android:layout_width="match_parent"
@@ -68,8 +64,36 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/last_name" >
-
         </EditText>
+
+        <EditText
+            android:id="@+id/txtExperienceInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/experience"
+            android:inputType="number" />
+
+        <LinearLayout
+            android:id="@+id/edSpnrLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/education"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spnrEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/education" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnCreate"
@@ -77,8 +101,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/create_account" />
-
     </LinearLayout>
-    
 
 </ScrollView>
