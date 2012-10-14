@@ -55,7 +55,7 @@ public class MainActivity extends SherlockMapActivity {
 				Log.d(TAG, "Number of Jobs: " + jobs.size());
 				StringBuilder sb = new StringBuilder();
 				for (Job job : jobs) {
-					sb.append(job.getJobDescription()).append("\n");
+					sb.append(job.getCompany()).append("--\n");
 				}
 				
 				tv.setText(sb.toString());
