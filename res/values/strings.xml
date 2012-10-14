@@ -15,4 +15,37 @@
     <string name="location_dialog">Location Disabled!</string>
     <string name="cancel">Cancel</string>
     <string name="open_location_settings">Open Location Settings</string>
+    <string name="experience">Years of Experience</string>
+    <string name="education">Highest Education</string>
+    <string-array name="education_array">
+        <item>None</item>
+        <item>High School</item>
+        <item>2 Year Degree</item>
+        <item>4 Year Degree</item>
+        <item>Graduate Degree</item>
+        <item>Doctorate</item>
+    </string-array>
+	<string-array name="soc_codes">
+			<item>Computer and Mathematical Occupations</item>
+			<item>Architecture and Engineering Occupations</item>
+			<item>Life, Physical, and Social Science Occupations</item>
+			<item>Community and Social Services Occupations</item>
+			<item>Legal Occupations</item>
+			<item>Education, Training, and Library Occupations</item>
+			<item>Arts, Design, Entertainment, Sports, and Media Occupations</item>
+			<item>Healthcare Practitioners and Technical Occupations</item>
+			<item>Healthcare Support Occupations</item>
+			<item>Protective Service Occupations</item>
+			<item>Food Preparation and Serving Related Occupations</item>
+			<item>Building and Grounds Cleaning and Maintenance Occupations</item>
+			<item>Personal Care and Service Occupations</item>
+			<item>Sales and Related Occupations</item>
+			<item>Office and Administrative Support Occupations</item>
+			<item>Farming, Fishing, and Forestry Occupations</item>
+			<item>Construction and Extraction Occupations</item>
+			<item>Installation, Maintenance, and Repair Occupations</item>
+			<item>Production Occupations</item>
+			<item>Transportation and Material Moving Occupations</item>
+			<item>Military Specific Occupations</item>
+	</string-array>
 </resources>
