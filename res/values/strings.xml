@@ -48,4 +48,7 @@
 			<item>Transportation and Material Moving Occupations</item>
 			<item>Military Specific Occupations</item>
 	</string-array>
+	<string name="tab_p_info">Personal</string>
+	<string name="tab_login_info">Login</string>
+	<string name="tab_experience">Experience</string>
 </resources>
