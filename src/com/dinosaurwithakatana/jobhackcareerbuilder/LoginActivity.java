@@ -27,8 +27,14 @@ public class LoginActivity extends SherlockActivity{
 		final EditText password = (EditText)findViewById(R.id.txtPasswordInput);
 
 		Button login = (Button) findViewById(R.id.btnLogin);
+		
+			// TODO Just for now, this way we can skip logging for a bit
+		Intent i = new Intent(LoginActivity.this,MainActivity.class);
+		startActivity(i);
+		
 		login.setOnClickListener(new View.OnClickListener() {
 
+		
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub

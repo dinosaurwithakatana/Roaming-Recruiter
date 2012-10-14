@@ -35,6 +35,7 @@
             android:name=".LocationService"
             />
         <activity android:name=".CreateAccountActivity"/>
+        <activity android:name=".LocationDialog"></activity>
     </application>
 
 </manifest>
