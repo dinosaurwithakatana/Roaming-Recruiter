@@ -103,17 +103,24 @@ public class MainActivity extends SherlockMapActivity {
 					// mId allows you to update the notification later on.
 					mNotificationManager.notify(mId, mBuilder.build());
 				}
+				
+				Log.d(TAG, "FOO");
+				
 				// Update Map
 				MapView view = (MapView)findViewById(R.id.main_map);
 				List<Overlay> mapOverlays = view.getOverlays();
 				Drawable person = getResources().getDrawable(R.drawable.person);
 				Drawable jobPin = getResources().getDrawable(R.drawable.mappin);
 				
+			          view.getOverlays().clear();
+			          view.invalidate();
+				
 				CBOverlay overlay = new CBOverlay(person,mContext,null);
 				Location currLocation = mService.getLocation();
 				GeoPoint point = new GeoPoint((int)(currLocation.getLatitude() * 1E6),(int)(currLocation.getLongitude() * 1E6));
 				overlay.addItem(point, "", "");
 				mapOverlays.add(overlay);
+				
 				
 				Log.d(TAG, "Button click");
 				List<Job> jobs = mService.getJobs();

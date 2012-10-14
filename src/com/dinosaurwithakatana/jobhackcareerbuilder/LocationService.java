@@ -31,6 +31,7 @@ public class LocationService extends Service {
 	private Location mLocation;
 	
 	private final IBinder mBinder = new LocalBinder();
+	private List<Job> jobsList;
 	
 	private static final String TAG = LocationService.class.getSimpleName();
 	private static final int TWO_MINUTES = 1000*60*2;
@@ -41,6 +42,10 @@ public class LocationService extends Service {
 	
 	public Location getLocation() {
 		return mLocation;
+	}
+	
+	public boolean jobsExist() {
+		return jobsList == null;
 	}
 	
 	/**
@@ -54,8 +59,8 @@ public class LocationService extends Service {
 			
 			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
 			        .setSmallIcon(R.drawable.ic_launcher)
-			        .setContentTitle("My notification")
-			        .setContentText("Hello World!");
+			        .setContentTitle("New Jobs Available")
+			        .setContentText("Found " + jobCount + " jobs near you!");
 			// Creates an explicit intent for an Activity in your app
 			Intent resultIntent = new Intent(this, MainActivity.class);
 			int mId=0;
@@ -79,6 +84,9 @@ public class LocationService extends Service {
 			    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			// mId allows you to update the notification later on.
 			mNotificationManager.notify(mId, mBuilder.build());
+			
+			if (CurrentUser.jobs == null)
+				CurrentUser.jobs = jobsList;
 			return jobsList;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,6 +216,7 @@ public class LocationService extends Service {
 		public void onLocationChanged(Location location) {
 			if (isBetterLocation(location, mLocation)) {
 				mLocation = location;
+				getJobs();
 			}
 		}
 

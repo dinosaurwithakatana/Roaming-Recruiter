@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class CurrentUser {
 	public static String sEducation; // Career Builder Education Code
 	public static String sSOCCode; // Standard Occupational Classification code
 	public static String currentDID;
+	public static List<Job> jobs;
 	
 	private static final String DEVELOPER_KEY = "WDHF0HJ60FHRP1N7XQ2K";
 	

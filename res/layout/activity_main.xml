@@ -25,6 +25,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="Button" />
+        android:text="Invalidate Map" />
 
 </RelativeLayout>
