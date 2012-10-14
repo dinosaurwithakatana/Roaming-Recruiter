@@ -79,6 +79,7 @@ public class LocationService extends Service {
 			    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			// mId allows you to update the notification later on.
 			mNotificationManager.notify(mId, mBuilder.build());
+			return jobsList;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
