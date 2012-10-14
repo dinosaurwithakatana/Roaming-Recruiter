@@ -78,5 +78,17 @@ public class LoginActivity extends SherlockActivity{
 
 			}
 		});
+
+		Button createAccountButton = (Button)findViewById(R.id.btnCreateAcct);
+		createAccountButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(LoginActivity.this, CreateAccountActivity.class);
+				startActivity(i);
+
+			}
+		});
 	}
 }
