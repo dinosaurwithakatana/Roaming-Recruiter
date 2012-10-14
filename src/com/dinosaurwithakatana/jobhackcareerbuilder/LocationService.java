@@ -66,6 +66,8 @@ public class LocationService extends Service {
 							"DeveloperKey=" + DEVELOPER_KEY + "&" +
 							"Location=" + location.getLatitude() + "::" + location.getLongitude() + "&" +
 							"Radius=" + mConfiguration.getSearchRadius() + "&" + 
+							"SOCCode=" + CurrentUser.sSOCCode + "&" + 
+							"SpecificEduction=true&EducationCode=" + CurrentUser.sEducation + "&" +
 							"ExcludeNational=true&OrderBy=Distance&OrderDirection=ASC";
 		String response = new QueryJobsTask().execute(url).get();
 		
