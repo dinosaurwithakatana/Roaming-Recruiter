@@ -1,11 +1,11 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import org.xmlpull.v1.XmlPullParserException;
-
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +35,7 @@ public class LocationService extends Service {
 	private static final String DEVELOPER_KEY = "WDHF0HJ60FHRP1N7XQ2K";
 	private static final String CAREER_BUILDER_URL = "http://api.careerbuilder.com/";
 	private static final String CAREER_BUILDER_API = "v1/jobsearch/";
+	private boolean is_gpsEnabled = false;
 	
 	public String getLocation() {
 		return mLocation.toString();
@@ -73,13 +74,13 @@ public class LocationService extends Service {
 		// Debugging purposes
 		Log.d(TAG, "Response length : "+response.length());
 		
-		XMLParser parser = new XMLParser();
-		
-		try {
-			return parser.parse(response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 		
+//		XMLParser parser = new XMLParser();
+//		
+//		try {
+//			return parser.parse(response);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} 		
 		return null;
 	}
 
@@ -98,9 +99,11 @@ public class LocationService extends Service {
 		
 		if (!gpsEnabled) {
 			Log.d(TAG, "GPS Not Enabled");
+			is_gpsEnabled = false;
 			// TODO: Build alert dialog
-			enableLocationSettings();
+//			enableLocationSettings();
 		} else {
+			is_gpsEnabled = true;
 			mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
 					10000,   // 10000 seconds
 					10,      // 10 meters
@@ -108,10 +111,17 @@ public class LocationService extends Service {
 		}
 	}
 
+	public boolean isIs_gpsEnabled() {
+		return is_gpsEnabled;
+	}
+
+	public void setIs_gpsEnabled(boolean is_gpsEnabled) {
+		this.is_gpsEnabled = is_gpsEnabled;
+	}
+
 	private void enableLocationSettings() {
-    	Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-    	startActivity(intent);
-    }
+		
+	}	
 	
 	protected boolean isBetterLocation(Location location, Location currentBestLocation) {
 		if (currentBestLocation == null)

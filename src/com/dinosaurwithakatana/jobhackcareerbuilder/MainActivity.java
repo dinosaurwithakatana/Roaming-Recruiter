@@ -8,6 +8,7 @@ import com.google.android.maps.MapView;
 
 import android.os.*;
 import android.content.*;
+import android.support.v4.app.*;
 import android.util.Log;
 import android.view.*;
 import android.view.View.OnClickListener;
@@ -54,6 +55,10 @@ public class MainActivity extends SherlockMapActivity {
     	button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				if(!mService.isIs_gpsEnabled()){
+					DialogFragment newFragment = LocationDialog.newInstance(this);
+				    newFragment.show(MainActivity.this.getSupportFragmentManager(), "missiles");
+				}
 				// Update Map
 				Log.d(TAG, "Button click");
 				TextView tv = (TextView) findViewById(R.id.main_text);
