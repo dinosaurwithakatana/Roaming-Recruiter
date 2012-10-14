@@ -1,5 +1,7 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
+import java.util.List;
+
 import com.actionbarsherlock.app.SherlockMapActivity;
 import com.dinosaurwithakatana.jobhackcareerbuilder.LocationService.LocalBinder;
 import com.google.android.maps.MapView;
@@ -43,7 +45,15 @@ public class MainActivity extends SherlockMapActivity {
 				// Update Map
 				Log.d(TAG, "Button click");
 				TextView tv = (TextView) findViewById(R.id.main_text);
-				tv.setText(mService.getJobs());
+				List<Job> jobs = mService.getJobs();
+				
+				Log.d(TAG, "Number of Jobs: " + jobs.size());
+				StringBuilder sb = new StringBuilder();
+				for (Job job : jobs) {
+					sb.append(job.getJobDescription()).append("\n");
+				}
+				
+				tv.setText(sb.toString());
 			}
     	});
     }

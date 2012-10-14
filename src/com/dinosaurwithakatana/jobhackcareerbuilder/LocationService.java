@@ -1,6 +1,10 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Service;
 import android.content.Context;
@@ -40,7 +44,7 @@ public class LocationService extends Service {
 	 * Get relevant jobs.
 	 * @return
 	 */
-	public String getJobs() {
+	public List<Job> getJobs() {
 		try {
 			return queryJobs(mLocation);
 		} catch (Exception e) {
@@ -55,7 +59,7 @@ public class LocationService extends Service {
 	 * @throws ExecutionException 
 	 * @throws InterruptedException 
 	 */
-	public String queryJobs(Location location) throws InterruptedException, ExecutionException {
+	public List<Job> queryJobs(Location location) throws InterruptedException, ExecutionException {
 		Log.d(TAG, "queryJobs called");
 		String url = CAREER_BUILDER_URL + CAREER_BUILDER_API + "?" + 
 							"DeveloperKey=" + DEVELOPER_KEY + "&" +
@@ -64,8 +68,17 @@ public class LocationService extends Service {
 							"ExcludeNational=true&OrderBy=Distance&OrderDirection=ASC";
 		String response = new QueryJobsTask().execute(url).get();
 		
+		// Debugging purposes
 		Log.d(TAG, "Response length : "+response.length());
-		return response;
+		
+		XMLParser parser = new XMLParser();
+		
+		try {
+			return parser.parse(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 		
+		return null;
 	}
 
 	@Override

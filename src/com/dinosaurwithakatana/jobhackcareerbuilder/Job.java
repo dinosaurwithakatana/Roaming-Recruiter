@@ -1,9 +1,6 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
 import java.util.Date;
-import java.util.List;
-
-import android.location.Location;
 
 /**
  * Represents a CareerBuilder Job.
@@ -12,11 +9,11 @@ import android.location.Location;
  */
 public class Job {
 	private String company, DID;
-	private List<String> ONetCodes;
+	private String ONetCode;
 	private String jobTitle;
 	private String jobDescription;
 	private String employmentType;
-	private Location locationLatLong;
+	private CBLocation locationLatLong;
 	private String locationFriendly;
 	private Date jobPosted;
 	
@@ -32,11 +29,11 @@ public class Job {
 	public void setDID(String dID) {
 		DID = dID;
 	}
-	public List<String> getONetCodes() {
-		return ONetCodes;
+	public String getONetCode() {
+		return ONetCode;
 	}
-	public void setONetCodes(List<String> oNetCodes) {
-		ONetCodes = oNetCodes;
+	public void setONetCode(String ONetCode) {
+		this.ONetCode = ONetCode;
 	}
 	public String getJobTitle() {
 		return jobTitle;
@@ -56,10 +53,10 @@ public class Job {
 	public void setEmploymentType(String employmentType) {
 		this.employmentType = employmentType;
 	}
-	public Location getLocationLatLong() {
+	public CBLocation getLocationLatLong() {
 		return locationLatLong;
 	}
-	public void setLocationLatLong(Location locationLatLong) {
+	public void setLocationLatLong(CBLocation locationLatLong) {
 		this.locationLatLong = locationLatLong;
 	}
 	public String getLocationFriendly() {
