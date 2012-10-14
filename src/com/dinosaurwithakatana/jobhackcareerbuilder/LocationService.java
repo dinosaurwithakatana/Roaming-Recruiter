@@ -74,13 +74,13 @@ public class LocationService extends Service {
 		// Debugging purposes
 		Log.d(TAG, "Response length : "+response.length());
 		
-//		XMLParser parser = new XMLParser();
-//		
-//		try {
-//			return parser.parse(response);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} 		
+		XMLParser parser = new XMLParser();
+		
+		try {
+			return parser.parse(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 		
 		return null;
 	}
 
