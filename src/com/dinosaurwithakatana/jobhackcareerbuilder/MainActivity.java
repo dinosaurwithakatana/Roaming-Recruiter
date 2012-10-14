@@ -1,25 +1,19 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockMapActivity;
 import com.dinosaurwithakatana.jobhackcareerbuilder.LocationService.LocalBinder;
+import com.google.android.maps.MapView;
 
-import android.os.Bundle;
-import android.os.IBinder;
-import android.provider.Settings;
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
+import android.os.*;
+import android.content.*;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.*;
 
-public class MainActivity extends SherlockActivity {
+public class MainActivity extends SherlockMapActivity {
 	private LocationService mService;
+	private LocalConfiguration mConfiguration;
 	private boolean mBound = false;
 	private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -29,13 +23,16 @@ public class MainActivity extends SherlockActivity {
         Log.d(TAG, "Main Created");
         
         setContentView(R.layout.activity_main);
+        mConfiguration = new LocalConfiguration();
     }
     
     @Override
     public void onStart() {
     	super.onStart();
+    	Log.d(TAG, "STARTED");
     	
     	Intent intent = new Intent(this, LocationService.class);
+    	intent.putExtra("LocalConfiguration", mConfiguration);
     	bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     	
     	Button button = (Button) findViewById(R.id.main_button);
@@ -43,8 +40,10 @@ public class MainActivity extends SherlockActivity {
     	button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				TextView tv = (TextView) findViewById(R.id.main_text_view);
-				tv.setText(mService.getLocation());
+				// Update Map
+				Log.d(TAG, "Button click");
+				TextView tv = (TextView) findViewById(R.id.main_text);
+				tv.setText(mService.getJobs());
 			}
     	});
     }
@@ -76,6 +75,13 @@ public class MainActivity extends SherlockActivity {
 			mBound = false;
 		}
     };
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+    
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

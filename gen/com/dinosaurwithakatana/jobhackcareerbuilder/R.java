@@ -995,7 +995,7 @@ containing a value of this type.
         public static final int homeAsUp=0x7f040006;
         public static final int listMode=0x7f040002;
         public static final int main_button=0x7f040040;
-        public static final int main_text_view=0x7f04003f;
+        public static final int main_text=0x7f04003f;
         public static final int menu_settings=0x7f040041;
         public static final int normal=0x7f040001;
         public static final int showCustom=0x7f040008;
