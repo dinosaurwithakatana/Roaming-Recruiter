@@ -37,8 +37,8 @@ public class LocationService extends Service {
 	private static final String CAREER_BUILDER_API = "v1/jobsearch/";
 	private boolean is_gpsEnabled = false;
 	
-	public String getLocation() {
-		return mLocation.toString();
+	public Location getLocation() {
+		return mLocation;
 	}
 	
 	/**
@@ -74,13 +74,13 @@ public class LocationService extends Service {
 		// Debugging purposes
 		Log.d(TAG, "Response length : "+response.length());
 		
-//		XMLParser parser = new XMLParser();
-//		
-//		try {
-//			return parser.parse(response);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} 		
+		XMLParser parser = new XMLParser();
+		
+		try {
+			return parser.parse(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 		
 		return null;
 	}
 
