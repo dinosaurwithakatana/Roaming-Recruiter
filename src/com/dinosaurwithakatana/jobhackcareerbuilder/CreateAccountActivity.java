@@ -40,6 +40,15 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 	 * Displays each section
 	 */
 	public static class CreateAcctFragment extends Fragment {
+		private View rootView;
+		private EditText username;
+		private EditText password;
+		private EditText confirmPassword;
+		private EditText fName;
+		private EditText mName;
+		private EditText lName;
+		private EditText yrOfExperience;
+
 		public CreateAcctFragment() {
 		}
 
@@ -50,12 +59,79 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 			Bundle args = getArguments();
 			int screen = args.getInt(ARG_SECTION_NUMBER);
 			switch (screen){
-				case 1: return inflater.inflate(R.layout.loginfragment, container, false);
-				case 2: return inflater.inflate(R.layout.personal_fragment, container, false);
-				case 3: {
-					
-					return inflater.inflate(R.layout.experience_fragment, container, false);
-				}
+			case 1: {
+				rootView = inflater.inflate(R.layout.loginfragment, container, false);
+				//					((EditText) rootView.findViewById(R.id.txtCreateUsername)).setText("poop");
+				username = ((EditText)rootView.findViewById(R.id.txtCreateUsername));
+				password = ((EditText)rootView.findViewById(R.id.txtCreatePassword));
+				confirmPassword = ((EditText)rootView.findViewById(R.id.txtConfirmCreatePassword));
+				return rootView;
+			}
+			case 2: {
+				rootView = inflater.inflate(R.layout.personal_fragment, container, false);
+				fName = ((EditText) rootView.findViewById(R.id.txtFirstName));
+				mName = ((EditText) rootView.findViewById(R.id.txtMiddleName));
+				lName = ((EditText) rootView.findViewById(R.id.txtLastName));
+				return rootView;
+			}
+			case 3: {
+				rootView  = inflater.inflate(R.layout.experience_fragment, container, false);
+				yrOfExperience = ((EditText) rootView.findViewById(R.id.txtExperienceInput));
+				spnrEducation = ((Spinner) rootView.findViewById(R.id.spnrEducation));
+				spnrListener = new CustomOnItemSelectedListener();
+				spnrEducation.setOnItemSelectedListener(spnrListener);
+				Log.v(TAG,"Spinner listener added");
+				Button createAccount = ((Button)rootView.findViewById(R.id.btnCreate));
+				createAccount.setOnClickListener(new View.OnClickListener() {
+
+					private String educationLevel;
+
+					private String usernameInput, passwordInput, confirmPasswordInput, fNameInput, mNameInput, lNameInput;
+					protected String yrOfExperienceInput;
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+
+						if(DEBUG){
+							Log.v(TAG,"create clicked");
+							//							Toast toast = Toast.makeText(getApplicationContext(), "You just clicked create!"  , Toast.LENGTH_SHORT);                                                       
+							//							toast.show();
+						}
+
+										usernameInput = username.getText().toString();
+										passwordInput = password.getText().toString();
+										confirmPasswordInput = confirmPassword.getText().toString();
+										fNameInput = fName.getText().toString();
+										mNameInput = mName.getText().toString();
+										lNameInput = lName.getText().toString();
+										yrOfExperienceInput = yrOfExperience.getText().toString();
+						educationLevel = ((CustomOnItemSelectedListener) spnrListener).getEducation();
+						Log.v(TAG,educationLevel);
+
+						if(passwordInput.equals(confirmPasswordInput)){
+							JSONObject user = new JSONObject();
+							try{
+								user.put("username",usernameInput);
+								user.put("password",passwordInput);
+								user.put("f_name",fNameInput);
+								user.put("m_name",mNameInput);
+								user.put("l_name",lNameInput);
+								user.put("Years of Experience",yrOfExperienceInput);
+								user.put("Education",educationLevel);
+							} catch (JSONException e){
+								e.printStackTrace();
+							}
+							new PostNewAcct().execute(user.toString());
+						}
+
+						Intent i = new Intent(getActivity().getBaseContext(),LoginActivity.class);
+						startActivity(i);
+
+					}
+				});
+				return rootView;
+			}
 			}
 			return null;
 		}
@@ -93,11 +169,8 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 	}
 
 	private static final String TAG = CreateAccountActivity.class.getSimpleName();                                                                                                                  
-	private String usernameInput, passwordInput, confirmPasswordInput, fNameInput, mNameInput, lNameInput;
-	protected String yrOfExperienceInput;
 	private static Spinner spnrEducation;
 	private static OnItemSelectedListener spnrListener;
-	private String educationLevel;
 	private static boolean DEBUG = true;
 
 	/**
@@ -154,69 +227,9 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
-		final EditText username = (EditText)findViewById(R.id.txtCreateUsername);
-		final EditText password = (EditText)findViewById(R.id.txtCreatePassword);
-		final EditText confirmPassword = (EditText)findViewById(R.id.txtConfirmCreatePassword);
-		final EditText fName = (EditText) findViewById(R.id.txtFirstName);
-		final EditText mName = (EditText) findViewById(R.id.txtMiddleName);
-		final EditText lName = (EditText) findViewById(R.id.txtLastName);
-		final EditText yrOfExperience = (EditText) findViewById(R.id.txtExperienceInput);
-		spnrEducation = (Spinner) findViewById(R.id.spnrEducation);
-		
-		
-		
-		username.setText("lol");
-		password.setText("lol");
-		confirmPassword.setText("lol");
-		fName.setText("fname");
-		mName.setText("poop");
-		lName.setText("mahhhh");
-		yrOfExperience.setText("4");
-		
-		Button createAccount = (Button)findViewById(R.id.btnCreate);
-		createAccount.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
 
-				if(DEBUG){
-					Log.v(TAG,"create clicked");
-					Toast toast = Toast.makeText(getApplicationContext(), "You just clicked create!"  , Toast.LENGTH_SHORT);                                                       
-					toast.show();
-				}
 
-				usernameInput = username.getText().toString();
-				passwordInput = password.getText().toString();
-				confirmPasswordInput = confirmPassword.getText().toString();
-				fNameInput = fName.getText().toString();
-				mNameInput = mName.getText().toString();
-				lNameInput = lName.getText().toString();
-				yrOfExperienceInput = yrOfExperience.getText().toString();
-				educationLevel = ((CustomOnItemSelectedListener) spnrListener).getEducation();
-				Log.v(TAG,educationLevel);
-
-				if(passwordInput.equals(confirmPasswordInput)){
-					JSONObject user = new JSONObject();
-					try{
-						user.put("username",usernameInput);
-						user.put("password",passwordInput);
-						user.put("f_name",fNameInput);
-						user.put("m_name",mNameInput);
-						user.put("l_name",lNameInput);
-						user.put("Years of Experience",yrOfExperienceInput);
-						user.put("Education",educationLevel);
-					} catch (JSONException e){
-						e.printStackTrace();
-					}
-					new PostNewAcct().execute(user.toString());
-				}
-
-				Intent i = new Intent(CreateAccountActivity.this,LoginActivity.class);
-				startActivity(i);
-
-			}
-		});
 	}
 
 	public void addListenerOnSpinnerItemSelection() {
@@ -228,8 +241,8 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        // When the given tab is selected, switch to the corresponding page in the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
+		// When the given tab is selected, switch to the corresponding page in the ViewPager.
+		mViewPager.setCurrentItem(tab.getPosition());
 
 	}
 

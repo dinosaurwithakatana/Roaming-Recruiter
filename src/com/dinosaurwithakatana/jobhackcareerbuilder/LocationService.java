@@ -51,7 +51,9 @@ public class LocationService extends Service {
 		try {
 			List<Job> jobsList = queryJobs(mLocation);
 			int jobCount = jobsList.size();
+			Log.v(TAG,"jobcount: " + jobCount);
 			
+			//notify about jobs
 			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
 			        .setSmallIcon(R.drawable.ic_launcher)
 			        .setContentTitle("My notification")
