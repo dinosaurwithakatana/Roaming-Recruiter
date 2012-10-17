@@ -19,6 +19,7 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 /**
  * Service that polls the phone's current location and queries CareerBuilder jobs.

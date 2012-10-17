@@ -10,6 +10,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.util.Log;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class XMLParser {
 	private static final String namespace = null;

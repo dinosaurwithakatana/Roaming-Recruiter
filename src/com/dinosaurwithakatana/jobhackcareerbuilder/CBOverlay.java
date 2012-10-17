@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.dinosaurwithakatana.roamingrecruiter.R;
 import com.google.android.maps.*;
 
 /**

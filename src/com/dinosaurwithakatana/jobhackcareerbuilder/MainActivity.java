@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.actionbarsherlock.app.SherlockMapActivity;
 import com.dinosaurwithakatana.jobhackcareerbuilder.LocationService.LocalBinder;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
@@ -78,8 +79,8 @@ public class MainActivity extends SherlockMapActivity {
 				if(!mService.isIs_gpsEnabled()){
 					NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(MainActivity.this)
 					        .setSmallIcon(R.drawable.ic_launcher)
-					        .setContentTitle("My notification")
-					        .setContentText("Hello World!");
+					        .setContentTitle("Career Builder")
+					        .setContentText("GPS Services are disabled!");
 					
 					Intent resultIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS );
 					

@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.os.AsyncTask;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class PostNewAcct extends AsyncTask<String, Void, String> {
 

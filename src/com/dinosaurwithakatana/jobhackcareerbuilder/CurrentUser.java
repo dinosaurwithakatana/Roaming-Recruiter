@@ -9,6 +9,7 @@ import java.util.List;
 
 import android.util.Log;
 import android.widget.Toast;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 /**
  * Represents the currently logged in Job seeker.

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class LocationDialog extends SherlockDialogFragment {
     @Override

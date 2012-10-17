@@ -1,5 +1,6 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
+import com.dinosaurwithakatana.roamingrecruiter.R;
 import java.util.Date;
 
 /**

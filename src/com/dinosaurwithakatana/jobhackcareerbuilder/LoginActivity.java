@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class LoginActivity extends SherlockActivity{
 	private static final String TAG = CreateAccountActivity.class.getSimpleName();                                                                                                                  

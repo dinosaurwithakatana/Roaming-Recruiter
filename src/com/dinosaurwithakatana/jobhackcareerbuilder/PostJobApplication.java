@@ -8,6 +8,7 @@ import java.net.URL;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class PostJobApplication extends AsyncTask<String, Void, String>{
 
