@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-<!-- 
 	<com.google.android.maps.MapView
+	    android:id="@+id/main_map"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_above="@+id/main_button"
@@ -11,13 +11,13 @@
 	    android:enabled="true"
 	    android:clickable="true"
 	    android:apiKey="0wUkHHkyOhF51Vp0ztPTy46Q5utb1Y_-SQTJ_nA" />
-	    -->
+	<!--
 	<TextView 
 	    android:id="@+id/main_text"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    />
-
+	    -->
     <Button
         android:id="@+id/main_button"
         android:layout_width="wrap_content"
@@ -25,6 +25,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:text="Button" />
+        android:text="Invalidate Map" />
 
 </RelativeLayout>

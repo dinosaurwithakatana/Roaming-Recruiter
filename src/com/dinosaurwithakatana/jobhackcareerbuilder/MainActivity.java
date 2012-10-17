@@ -1,16 +1,26 @@
 package com.dinosaurwithakatana.jobhackcareerbuilder;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.List;
 
 import com.actionbarsherlock.app.SherlockMapActivity;
 import com.dinosaurwithakatana.jobhackcareerbuilder.LocationService.LocalBinder;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
+import android.location.Location;
 import android.os.*;
 import android.provider.Settings;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.*;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.*;
 import android.util.Log;
 import android.view.*;
@@ -20,6 +30,10 @@ import android.widget.*;
 public class MainActivity extends SherlockMapActivity {
 	private LocationService mService;
 	private LocalConfiguration mConfiguration;
+	private Context mContext;
+	private String[] mFileList;
+	private File mPath = new File(Environment.getExternalStorageDirectory() + "//CareerBuilder//");
+	private String mChosenFile;
 	private boolean mBound = false;
 	protected int mId;
 	private static final String TAG = MainActivity.class.getSimpleName();
@@ -32,6 +46,7 @@ public class MainActivity extends SherlockMapActivity {
 		CurrentUser.sFirstName="Anjan";
 		CurrentUser.sLastName="Karanam";
 		CurrentUser.sEducation="DR32";
+		CurrentUser.sResume="Resume as a string SAMPLE";
 		CurrentUser.sSOCCode="15-0000";
 	}
 
@@ -41,6 +56,7 @@ public class MainActivity extends SherlockMapActivity {
         Log.d(TAG, "Main Created");
         
         setContentView(R.layout.activity_main);
+        mContext = this;
         mConfiguration = new LocalConfiguration();
         populateSampleUser();
     }
@@ -87,18 +103,39 @@ public class MainActivity extends SherlockMapActivity {
 					// mId allows you to update the notification later on.
 					mNotificationManager.notify(mId, mBuilder.build());
 				}
+				
+				Log.d(TAG, "FOO");
+				
 				// Update Map
+				MapView view = (MapView)findViewById(R.id.main_map);
+				List<Overlay> mapOverlays = view.getOverlays();
+				Drawable person = getResources().getDrawable(R.drawable.person);
+				Drawable jobPin = getResources().getDrawable(R.drawable.mappin);
+				
+			          view.getOverlays().clear();
+			          view.invalidate();
+				
+				CBOverlay overlay = new CBOverlay(person,mContext,null);
+				Location currLocation = mService.getLocation();
+				GeoPoint point = new GeoPoint((int)(currLocation.getLatitude() * 1E6),(int)(currLocation.getLongitude() * 1E6));
+				overlay.addItem(point, "", "");
+				mapOverlays.add(overlay);
+				
+				
 				Log.d(TAG, "Button click");
-				TextView tv = (TextView) findViewById(R.id.main_text);
 				List<Job> jobs = mService.getJobs();
 				
 				Log.d(TAG, "Number of Jobs: " + jobs.size());
-				StringBuilder sb = new StringBuilder();
 				for (Job job : jobs) {
-					sb.append(job.getCompany()).append("\n");
+					double latitude = CBLocation.addVariation(job.getLocationLatLong().getLatitude());
+					double longitude = CBLocation.addVariation(job.getLocationLatLong().getLongitude());
+					Log.d(TAG, "Lat: " + latitude + " Long: " + longitude);
+					overlay = new CBOverlay(jobPin, mContext, job.getDID());
+					point = new GeoPoint((int) (latitude * 1E6), (int)(longitude * 1E6));
+					overlay.addItem(point, job.getCompany(), job.getJobDescription());
+					mapOverlays.add(overlay);
 				}
-				
-				tv.setText(sb.toString());
+				view.invalidate();
 			}
     	});
     }
