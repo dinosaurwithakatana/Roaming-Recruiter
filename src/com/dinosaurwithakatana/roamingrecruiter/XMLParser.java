@@ -1,4 +1,4 @@
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

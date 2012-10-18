@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import org.json.JSONException;
 import org.json.JSONObject;

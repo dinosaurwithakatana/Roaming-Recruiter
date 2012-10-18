@@ -1,4 +1,4 @@
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import android.os.Parcel;
 import android.os.Parcelable;

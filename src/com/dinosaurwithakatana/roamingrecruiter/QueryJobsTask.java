@@ -1,35 +1,29 @@
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+import java.net.*;
 import android.os.AsyncTask;
-import android.util.Log;
 import com.dinosaurwithakatana.roamingrecruiter.R;
 
-public class PostJobApplication extends AsyncTask<String, Void, String>{
+/**
+ * This asynchronous task runs as a background thread process.
+ * It calls CareerBuilder's RESTful API by executing an HTTP GET request.
+ * The result is the XML response returned from CareerBuilder's servers.
+ * @author anjan
+ *
+ */
+public class QueryJobsTask extends AsyncTask<String, Void, String>{
 
 	@Override
-	protected String doInBackground(String... params) { 
+	protected String doInBackground(String... params) {
 		try {
-			URL url = new URL("http://api.careerbuilder.com/v1/application/submit");
+			URL url = new URL(params[0]);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			
-			conn.setRequestMethod("POST");
-			conn.setDoOutput(true);
-			conn.setDoInput(true);
-			conn.setUseCaches(false);
-			conn.setAllowUserInteraction(false);
-			
-			OutputStream out = conn.getOutputStream();
-	
-			out.write(params[0].getBytes());
-			out.flush();
-	
-	
+			conn.setRequestMethod("GET");
+
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 					+ conn.getResponseCode());
@@ -40,20 +34,18 @@ public class PostJobApplication extends AsyncTask<String, Void, String>{
 			
 			String output;
 			StringBuilder response = new StringBuilder();
+			System.out.println("Output from Server .... \n");
 			while ((output = br.readLine()) != null) {
-					response.append(output);
+				response.append(output);
 			}
-			
-			Log.d("ApplyJob", response.toString());
-			
 			br.close();
-	
+
 			conn.disconnect();
 			return response.toString();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "";
 		}
-		return "";
 	}
 
 }

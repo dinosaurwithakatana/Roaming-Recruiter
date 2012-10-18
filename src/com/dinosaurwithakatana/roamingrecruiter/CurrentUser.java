@@ -1,4 +1,4 @@
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

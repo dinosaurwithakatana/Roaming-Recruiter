@@ -1,12 +1,12 @@
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.List;
 
 import com.actionbarsherlock.app.SherlockMapActivity;
-import com.dinosaurwithakatana.jobhackcareerbuilder.LocationService.LocalBinder;
 import com.dinosaurwithakatana.roamingrecruiter.R;
+import com.dinosaurwithakatana.roamingrecruiter.LocationService.LocalBinder;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;

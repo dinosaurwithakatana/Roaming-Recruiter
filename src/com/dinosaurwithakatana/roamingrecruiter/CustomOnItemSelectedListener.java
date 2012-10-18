@@ -1,4 +1,4 @@
-package com.dinosaurwithakatana.jobhackcareerbuilder;
+package com.dinosaurwithakatana.roamingrecruiter;
 
 import android.util.Log;
 import android.view.View;
