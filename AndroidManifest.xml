@@ -21,9 +21,9 @@
         
         <uses-library android:name="com.google.android.maps" />
         
-        <activity android:name="com.dinosaurwithakatana.jobhackcareerbuilder.MainActivity"/>
+        <activity android:name="com.dinosaurwithakatana.roamingrecruiter.MainActivity"/>
         
-        <activity android:name="com.dinosaurwithakatana.jobhackcareerbuilder.LoginActivity" android:label="@string/app_name">
+        <activity android:name="com.dinosaurwithakatana.roamingrecruiter.LoginActivity" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,10 +32,10 @@
         
         <service 
             android:enabled="True"
-            android:name="com.dinosaurwithakatana.jobhackcareerbuilder.LocationService"
+            android:name="com.dinosaurwithakatana.roamingrecruiter.LocationService"
             />
-        <activity android:name="com.dinosaurwithakatana.jobhackcareerbuilder.CreateAccountActivity"/>
-        <activity android:name="com.dinosaurwithakatana.jobhackcareerbuilder.LocationDialog"></activity>
+        <activity android:name="com.dinosaurwithakatana.roamingrecruiter.CreateAccountActivity"/>
+        <activity android:name="com.dinosaurwithakatana.roamingrecruiter.LocationDialog"></activity>
     </application>
 
 </manifest>
