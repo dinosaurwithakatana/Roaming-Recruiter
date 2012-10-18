@@ -22,10 +22,10 @@ Java 1.6
 Screenshots
 -----------
 
-![Login Screen] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/blob/master/screenshots/login.png)
+![Login Screen] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/raw/master/screenshots/login.png)
 
-![Create Account] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/blob/master/screenshots/create.png)
+![Create Account] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/raw/master/screenshots/create.png)
 
-![Map Screen] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/blob/master/screenshots/map.png)
+![Map Screen] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/raw/master/screenshots/map.png)
 
-![Notification] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/blob/master/screenshots/notify.png)
+![Notification] (https://github.com/dinosaurwithakatana/Roaming-Recruiter/raw/master/screenshots/notify.png)
