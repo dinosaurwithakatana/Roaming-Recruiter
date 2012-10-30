@@ -37,19 +37,20 @@ import com.dinosaurwithakatana.roamingrecruiter.R;
 public class CreateAccountActivity extends SherlockFragmentActivity implements TabListener {
 
 
+	public static EditText username;
+	public static EditText password;
+	public static EditText confirmPassword;
+	public static EditText fName;
+	public static EditText mName;
+	public static EditText lName;
+	public static EditText yrOfExperience;
+
 	/**
 	 * Displays each section
 	 */
 	public static class CreateAcctFragment extends Fragment {
 		private View rootView;
-		private EditText username;
-		private EditText password;
-		private EditText confirmPassword;
-		private EditText fName;
-		private EditText mName;
-		private EditText lName;
-		private EditText yrOfExperience;
-
+		
 		public CreateAcctFragment() {
 		}
 
