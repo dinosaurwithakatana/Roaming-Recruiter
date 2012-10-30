@@ -2,10 +2,8 @@ package com.dinosaurwithakatana.roamingrecruiter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.*;
 import android.os.AsyncTask;
-import com.dinosaurwithakatana.roamingrecruiter.R;
 
 /**
  * This asynchronous task runs as a background thread process.

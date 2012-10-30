@@ -2,7 +2,6 @@ package com.dinosaurwithakatana.roamingrecruiter;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.dinosaurwithakatana.roamingrecruiter.R;
 
 /**
  * Configuration that specifies the settings for the client.

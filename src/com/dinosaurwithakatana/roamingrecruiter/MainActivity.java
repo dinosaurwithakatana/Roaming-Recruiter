@@ -1,23 +1,18 @@
 package com.dinosaurwithakatana.roamingrecruiter;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.List;
 
 import com.actionbarsherlock.app.SherlockMapActivity;
 import com.dinosaurwithakatana.roamingrecruiter.R;
 import com.dinosaurwithakatana.roamingrecruiter.LocationService.LocalBinder;
 import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
 import android.location.Location;
 import android.os.*;
 import android.provider.Settings;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.*;

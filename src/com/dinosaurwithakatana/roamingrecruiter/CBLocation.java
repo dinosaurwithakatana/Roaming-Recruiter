@@ -1,6 +1,5 @@
 package com.dinosaurwithakatana.roamingrecruiter;
 
-import com.dinosaurwithakatana.roamingrecruiter.R;
 
 /**
  * Custom location class. Uses double precision for latitude/longitude.

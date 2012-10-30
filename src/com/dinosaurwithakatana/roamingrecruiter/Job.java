@@ -1,6 +1,5 @@
 package com.dinosaurwithakatana.roamingrecruiter;
 
-import com.dinosaurwithakatana.roamingrecruiter.R;
 import java.util.Date;
 
 /**

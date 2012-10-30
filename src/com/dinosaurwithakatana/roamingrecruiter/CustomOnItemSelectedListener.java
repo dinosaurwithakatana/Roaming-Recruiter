@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class CustomOnItemSelectedListener implements OnItemSelectedListener {
 	private static final String TAG = CustomOnItemSelectedListener.class.getSimpleName();                                                                                                                  
