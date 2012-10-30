@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
@@ -12,17 +11,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.os.AsyncTask;
-import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class GetLoginAcct extends AsyncTask<String, Void, String>{
 
@@ -30,8 +26,6 @@ public class GetLoginAcct extends AsyncTask<String, Void, String>{
 	protected String doInBackground(String... params) {
 		// TODO Auto-generated method stub
 		String paramUsername = params[0].toString();
-		String line = "";
-		String returner = "";
 		String requestURL = "https://api.mongolab.com/api/1/databases/users/collections/Users?";
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("q", "{\"username\": \""+paramUsername+"\"}")); 

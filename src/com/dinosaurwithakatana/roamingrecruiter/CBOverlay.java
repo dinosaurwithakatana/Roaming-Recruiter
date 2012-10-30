@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.dinosaurwithakatana.roamingrecruiter.R;
 import com.google.android.maps.*;
 
 /**
@@ -23,6 +20,7 @@ import com.google.android.maps.*;
 public class CBOverlay extends ItemizedOverlay<OverlayItem>{
 	private ArrayList<OverlayItem> overlayItemList;
 	private Context mContext;
+	private static final String TAG = "CBOverlay";
 
 	public CBOverlay(Drawable marker, Context context, String DID) {
 		super(boundCenterBottom(marker));
@@ -55,6 +53,7 @@ public class CBOverlay extends ItemizedOverlay<OverlayItem>{
 	        	// Apply to CB Job	
 	        	try {
 	        		String response = CurrentUser.sendApplication();
+	        		Log.d(TAG, "Response: " + response);
 	        		Toast.makeText(mContext, "Posted Job Successfully!", Toast.LENGTH_SHORT).show();
 	        	} catch (Exception e) {
 	        		e.printStackTrace();

@@ -3,7 +3,6 @@ package com.dinosaurwithakatana.roamingrecruiter;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -15,7 +14,6 @@ import android.location.LocationManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
@@ -161,10 +159,6 @@ public class LocationService extends Service {
 	public void setIs_gpsEnabled(boolean is_gpsEnabled) {
 		this.is_gpsEnabled = is_gpsEnabled;
 	}
-
-	private void enableLocationSettings() {
-		
-	}	
 	
 	protected boolean isBetterLocation(Location location, Location currentBestLocation) {
 		if (currentBestLocation == null)
