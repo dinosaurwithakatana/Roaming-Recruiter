@@ -7,6 +7,7 @@ import com.actionbarsherlock.app.SherlockMapActivity;
 import com.dinosaurwithakatana.roamingrecruiter.R;
 import com.dinosaurwithakatana.roamingrecruiter.LocationService.LocalBinder;
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
@@ -117,6 +118,9 @@ public class MainActivity extends SherlockMapActivity {
 				overlay.addItem(point, "", "");
 				mapOverlays.add(overlay);
 				
+				MapController myMapController = view.getController();
+
+				myMapController.setCenter(point);
 				
 				Log.d(TAG, "Button click");
 				List<Job> jobs = mService.getJobs();
