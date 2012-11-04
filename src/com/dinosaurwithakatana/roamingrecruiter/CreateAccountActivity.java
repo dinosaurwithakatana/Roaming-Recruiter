@@ -3,9 +3,13 @@
  */
 package com.dinosaurwithakatana.roamingrecruiter;
 
+import java.nio.channels.AlreadyConnectedException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,9 +22,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -47,7 +53,7 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 	 */
 	public static class CreateAcctFragment extends Fragment {
 		private View rootView;
-		
+
 		public CreateAcctFragment() {
 		}
 
@@ -58,28 +64,46 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 			Bundle args = getArguments();
 			int screen = args.getInt(ARG_SECTION_NUMBER);
 			switch (screen){
-			case 1: {
+/*			
+ * Display the login screen
+*/			case 1: {
+				//inflate the required layout for the fragment
 				rootView = inflater.inflate(R.layout.loginfragment, container, false);
-				//					((EditText) rootView.findViewById(R.id.txtCreateUsername)).setText("poop");
+				Log.d(TAG,"Loaded login creation screen");
 				username = ((EditText)rootView.findViewById(R.id.txtCreateUsername));
 				password = ((EditText)rootView.findViewById(R.id.txtCreatePassword));
 				confirmPassword = ((EditText)rootView.findViewById(R.id.txtConfirmCreatePassword));
 				return rootView;
 			}
+/*Display the personal information screen*/
 			case 2: {
+				//inflate the required layout for the fragment
 				rootView = inflater.inflate(R.layout.personal_fragment, container, false);
+				Log.d(TAG,"Loaded personal creation screen");
 				fName = ((EditText) rootView.findViewById(R.id.txtFirstName));
 				mName = ((EditText) rootView.findViewById(R.id.txtMiddleName));
 				lName = ((EditText) rootView.findViewById(R.id.txtLastName));
 				return rootView;
 			}
+/*Display the experience screen*/
 			case 3: {
+				//inflate the required layout for the fragment
 				rootView  = inflater.inflate(R.layout.experience_fragment, container, false);
+				Log.d(TAG,"Loaded experience creation screen");
 				yrOfExperience = ((EditText) rootView.findViewById(R.id.txtExperienceInput));
 				spnrEducation = ((Spinner) rootView.findViewById(R.id.spnrEducation));
-				spnrListener = new CustomOnItemSelectedListener();
+				
+				//Add a listener to the spinner
+				spnrListener = new EducationItemSelectedListener();
 				spnrEducation.setOnItemSelectedListener(spnrListener);
+				
+				//Add the string array for years of experience to the user
+				ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getBaseContext(),R.array.education_array,android.R.layout.simple_spinner_item);
+				adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				spnrEducation.setAdapter(adapter);
 				Log.v(TAG,"Spinner listener added");
+				
+				//Action on the button
 				Button createAccount = ((Button)rootView.findViewById(R.id.btnCreate));
 				createAccount.setOnClickListener(new View.OnClickListener() {
 
@@ -92,22 +116,20 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 
+						usernameInput = username.getText().toString();
+						passwordInput = password.getText().toString();
+						confirmPasswordInput = confirmPassword.getText().toString();
+						fNameInput = fName.getText().toString();
+						mNameInput = mName.getText().toString();
+						lNameInput = lName.getText().toString();
+						yrOfExperienceInput = yrOfExperience.getText().toString();
+						educationLevel = ((EducationItemSelectedListener) spnrListener).getEducation();
 						if(DEBUG){
-							Log.v(TAG,"create clicked");
-							//							Toast toast = Toast.makeText(getApplicationContext(), "You just clicked create!"  , Toast.LENGTH_SHORT);                                                       
-							//							toast.show();
+							Log.v(TAG,"create clicked" + usernameInput + " " + fNameInput + " " + mNameInput + " " + lNameInput + " " + yrOfExperienceInput);
 						}
-
-										usernameInput = username.getText().toString();
-										passwordInput = password.getText().toString();
-										confirmPasswordInput = confirmPassword.getText().toString();
-										fNameInput = fName.getText().toString();
-										mNameInput = mName.getText().toString();
-										lNameInput = lName.getText().toString();
-										yrOfExperienceInput = yrOfExperience.getText().toString();
-						educationLevel = ((CustomOnItemSelectedListener) spnrListener).getEducation();
 						Log.v(TAG,educationLevel);
 
+						//Send the informationt to the DB only if passwords match
 						if(passwordInput.equals(confirmPasswordInput)){
 							JSONObject user = new JSONObject();
 							try{
@@ -123,7 +145,15 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 							}
 							new PostNewAcct().execute(user.toString());
 						}
-
+						else{
+							//Display an alert dialog to tell the user the passwords don't match
+							Toast toast = Toast.makeText(getActivity().getBaseContext(), "Passwords don't match!"  , Toast.LENGTH_SHORT);
+							toast.show();
+							
+						}
+						//Toast to show new user was created
+						Toast toast = Toast.makeText(getActivity().getBaseContext(), "New User " + usernameInput+ " Created!"  , Toast.LENGTH_SHORT);
+						toast.show();
 						Intent i = new Intent(getActivity().getBaseContext(),LoginActivity.class);
 						startActivity(i);
 
@@ -204,6 +234,7 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setOffscreenPageLimit(3);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 		// When swiping between different sections, select the corresponding tab.
@@ -226,18 +257,9 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
-
-
-
 	}
 
-	public void addListenerOnSpinnerItemSelection() {
-		spnrListener = new CustomOnItemSelectedListener();
-		spnrEducation.setOnItemSelectedListener(spnrListener);
-		Log.v(TAG,"Spinner listener added");
-	}
-
-
+	
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// When the given tab is selected, switch to the corresponding page in the ViewPager.
