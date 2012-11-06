@@ -18,7 +18,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.dinosaurwithakatana.roamingrecruiter.R;
 
 public class LoginActivity extends SherlockActivity{
-	private static final String TAG = CreateAccountActivity.class.getSimpleName();                                                                                                                  
+	private static final String TAG = "Roaming Recruiter " +CreateAccountActivity.class.getSimpleName();                                                                                                                  
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

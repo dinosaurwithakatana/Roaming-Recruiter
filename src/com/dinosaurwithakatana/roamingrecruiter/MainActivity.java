@@ -33,7 +33,7 @@ public class MainActivity extends SherlockMapActivity {
 	private String mChosenFile;
 	private boolean mBound = false;
 	protected int mId;
-	private static final String TAG = MainActivity.class.getSimpleName();
+	private static final String TAG ="Roaming Recruiter " +MainActivity.class.getSimpleName();
 	
 	/**
 	 * Sample user, for test purposes ONLY.

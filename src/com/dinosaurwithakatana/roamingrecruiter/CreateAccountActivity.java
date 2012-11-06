@@ -197,7 +197,7 @@ public class CreateAccountActivity extends SherlockFragmentActivity implements T
 		}
 	}
 
-	private static final String TAG = CreateAccountActivity.class.getSimpleName();                                                                                                                  
+	private static final String TAG = "Roaming Recruiter " +CreateAccountActivity.class.getSimpleName();                                                                                                                  
 	private static Spinner spnrEducation;
 	private static OnItemSelectedListener spnrListener;
 	private static boolean DEBUG = true;

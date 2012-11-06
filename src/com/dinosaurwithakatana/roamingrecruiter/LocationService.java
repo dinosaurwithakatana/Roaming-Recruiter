@@ -32,7 +32,7 @@ public class LocationService extends Service {
 	private final IBinder mBinder = new LocalBinder();
 	private List<Job> jobsList;
 	
-	private static final String TAG = LocationService.class.getSimpleName();
+	private static final String TAG = "Roaming Recruiter " + LocationService.class.getSimpleName();
 	private static final int TWO_MINUTES = 1000*60*2;
 	private static final String DEVELOPER_KEY = "WDHF0HJ60FHRP1N7XQ2K";
 	private static final String CAREER_BUILDER_URL = "http://api.careerbuilder.com/";
@@ -142,10 +142,14 @@ public class LocationService extends Service {
 			Log.d(TAG, "GPS Not Enabled");
 			is_gpsEnabled = false;
 			// TODO: Build alert dialog
+			mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+					10000,   // 10000 seconds
+					10,      // 10 meters
+					listener);
 //			enableLocationSettings();
 		} else {
 			is_gpsEnabled = true;
-			mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+			mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 					10000,   // 10000 seconds
 					10,      // 10 meters
 					listener);

@@ -24,12 +24,11 @@ public class GetLoginAcct extends AsyncTask<String, Void, String>{
 
 	@Override
 	protected String doInBackground(String... params) {
-		// TODO Auto-generated method stub
+		//Create the GET request for logging in
 		String paramUsername = params[0].toString();
 		String requestURL = "https://api.mongolab.com/api/1/databases/users/collections/Users?";
 		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("q", "{\"username\": \""+paramUsername+"\"}")); 
-//		nameValuePairs.add(new BasicNameValuePair("q", "{\"username\": \"H\"}")); 
 		nameValuePairs.add(new BasicNameValuePair("apiKey", "507989d2e4b0e9396b4a4a90"));
 		try {
 			HttpClient httpclient = new DefaultHttpClient();

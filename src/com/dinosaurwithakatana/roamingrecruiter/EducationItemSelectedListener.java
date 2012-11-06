@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class EducationItemSelectedListener implements OnItemSelectedListener {
-	private static final String TAG = EducationItemSelectedListener.class.getSimpleName();                                                                                                                  
+	private static final String TAG = "Roaming Recruiter " +EducationItemSelectedListener.class.getSimpleName();                                                                                                                  
 	private String education;
 	/**
 	 * @return the education

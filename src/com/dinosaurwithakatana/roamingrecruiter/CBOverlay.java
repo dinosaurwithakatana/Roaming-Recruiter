@@ -20,7 +20,7 @@ import com.google.android.maps.*;
 public class CBOverlay extends ItemizedOverlay<OverlayItem>{
 	private ArrayList<OverlayItem> overlayItemList;
 	private Context mContext;
-	private static final String TAG = "CBOverlay";
+	private static final String TAG = "Roaming Recruiter " +"CBOverlay";
 
 	public CBOverlay(Drawable marker, Context context, String DID) {
 		super(boundCenterBottom(marker));
